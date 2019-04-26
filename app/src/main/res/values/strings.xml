@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Quizdroid</string>
+    <string name="topics_header">Topics</string>
 </resources>
