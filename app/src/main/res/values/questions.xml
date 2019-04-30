@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="topics">
+        <item>Math</item>
+        <item>Physics</item>
+        <item>Marvel Super Heroes</item>
+    </string-array>
+    <string-array name="topic_ids">
+        <item>math</item>
+        <item>physics</item>
+        <item>marvel</item>
+    </string-array>
+    <string-array name="overviews">
+        <item>This topic has questions about math. Wow!</item>
+        <item>This topic has questions about physics. Cool!</item>
+        <item>This topic has questions about Marvel superheroes. Nice! </item>
+    </string-array>
+
+
+    <string-array name="math">
+        <item>What is 3 + 3?</item>
+        <item>What is 5 - 2?</item>
+        <item>What is 2 ^ 10?</item>
+    </string-array>
+    <string-array name="math_answers0">
+        <item>6</item>
+        <item>4</item>
+        <item>5</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="math_answers1">
+        <item>3</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="math_answers2">
+        <item>1024</item>
+        <item>2048</item>
+        <item>4096</item>
+        <item>8192</item>
+    </string-array>
+
+
+    <string-array name="physics">
+        <item>What is the speed of light?</item>
+        <item>What is acceleration of gravity on Earth?</item>
+        <item>What is the formula for kinetic energy?</item>
+    </string-array>
+    <string-array name="physics_answers0">
+        <item>3x10^8 m/s</item>
+        <item>3x10^9 m/s</item>
+        <item>3x10^8 m/hr</item>
+        <item>3x10^7 m/s</item>
+    </string-array>
+    <string-array name="physics_answers1">
+        <item>9.8 m/s²</item>
+        <item>9.8 m/s</item>
+        <item>8.9 m/s²</item>
+        <item>8.9 m/s</item>
+    </string-array>
+    <string-array name="physics_answers2">
+        <item>½mv²</item>
+        <item>¼mv²</item>
+        <item>½mv</item>
+        <item>¼mv²</item>
+    </string-array>
+
+    <string-array name="marvel">
+        <item>Which of the following is not a Marvel superhero?</item>
+        <item>How many superheroes are in the Fantastic Four?</item>
+    </string-array>
+    <string-array name="marvel_answers0">
+        <item>Batman</item>
+        <item>Iron Man</item>
+        <item>Spiderman</item>
+        <item>Wolverine</item>
+    </string-array>
+    <string-array name="marvel_answers1">
+        <item>4</item>
+        <item>5</item>
+        <item>1</item>
+        <item>80</item>
+    </string-array>
+</resources>

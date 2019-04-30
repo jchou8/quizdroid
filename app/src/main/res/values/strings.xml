@@ -2,4 +2,20 @@
     <string name="app_name">Quizdroid</string>
     <string name="topics_header">Topics</string>
     <string name="overview_header">Topic Overview</string>
+    <string name="correct_header">Correct answer</string>
+    <string name="youranswer_header">Your answer</string>
+
+    <string name="placeholder_topic">Topic</string>
+    <string name="placeholder_overview">Lorem ipsum dolor sit amet.</string>
+    <string name="placeholder_numquestions">This topic has X questions.</string>
+    <string name="placeholder_questionheader">Question X</string>
+    <string name="placeholder_question">Lorem ipsum?</string>
+    <string name="placeholder_option">Option</string>
+    <string name="placeholder_answer">Answer</string>
+    <string name="placeholder_results">You have X out of X correct.</string>
+
+    <string name="btn_begin">Begin</string>
+    <string name="btn_submit">Submit</string>
+    <string name="btn_next">Next</string>
+
 </resources>
