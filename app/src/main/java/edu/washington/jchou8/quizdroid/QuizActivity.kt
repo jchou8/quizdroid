@@ -44,7 +44,6 @@ class QuizActivity : AppCompatActivity(),
         val overviewFrag = OverviewFragment.newInstance(topicName, topicDesc, questions.size)
         supportFragmentManager.beginTransaction().run {
             replace(R.id.quiz_container, overviewFrag, OVERVIEW_FRAGMENT)
-            addToBackStack(null)
             commit()
         }
     }
