@@ -35,14 +35,13 @@ class QuizActivity : AppCompatActivity(),
         val overviewFrag = OverviewFragment.newInstance(topicName, topicDesc, topic!!.questions.size)
         supportFragmentManager.beginTransaction().run {
             replace(R.id.quiz_container, overviewFrag, OVERVIEW_FRAGMENT)
-            addToBackStack(null)
             commit()
         }
     }
 
     override fun onSubmit(answer: Int?) {
         val question = topic!!.questions[curQuestion]
-        if (question.correct === answer) {
+        if (question.correct == answer) {
             curCorrect++
         }
 

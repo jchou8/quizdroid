@@ -1,15 +1,17 @@
 package edu.washington.jchou8.quizdroid
 
 import android.app.Application
+import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import android.util.Log
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 @Parcelize
 data class Quiz(val question: String, val options: List<String>, val correct: Int): Parcelable
 
 @Parcelize
-data class Topic(val title: String, val shortDesc: String, val longDesc: String, val questions: List<Quiz>): Parcelable
+data class Topic(val title: String, val shortDesc: String, val longDesc: String, val questions: List<Quiz>, val icon: String): Parcelable
 
 interface TopicRepository {
     val topics: List<Topic>
@@ -19,7 +21,7 @@ class LocalTopicRepository : TopicRepository {
     override val topics = listOf(
         Topic(
             "Math",
-            "Questions about math",
+            "Questions about math.",
             "This topic has some mathematical questions.",
             listOf(
                 Quiz(
@@ -34,10 +36,11 @@ class LocalTopicRepository : TopicRepository {
                     "What is 2^10?",
                     listOf("1024", "2048", "4096", "8192"),
                     0)
-            )),
+            ),
+            "ic_launcher"),
         Topic(
             "Physics",
-            "Physical questions",
+            "Physical questions.",
             "This topic has some questions about physics.",
             listOf(
                 Quiz(
@@ -52,10 +55,11 @@ class LocalTopicRepository : TopicRepository {
                     "What is the formula for kinetic energy?",
                     listOf("½mv", "¼mv", "½mv²", "¼mv²"),
                     2)
-            )),
+            ),
+            "ic_launcher"),
         Topic(
             "Marvel Superheroes",
-            "Marvelous questions",
+            "Marvelous questions.",
             "This topic has some questions about Marvel superheroes.",
             listOf(
                 Quiz(
@@ -66,7 +70,8 @@ class LocalTopicRepository : TopicRepository {
                     "How many superheroes are in the Fantastic Four?",
                     listOf("1", "4", "5", "80"),
                     1)
-            ))
+            ),
+            "ic_launcher")
     )
 }
 

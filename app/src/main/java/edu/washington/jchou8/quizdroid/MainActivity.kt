@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val topics = QuizApp.getTopics()
-        val topicNames = topics.map{t -> t.title}
-        val adapter = TopicsRecyclerViewAdapter(topicNames)
+        val topicIcons = topics.map{t -> resources.getIdentifier(t.icon, "drawable", packageName)}
+        val adapter = TopicsRecyclerViewAdapter(topics, topicIcons)
         adapter.onTopicClickedListener = { position, _ ->
             val intent = Intent(applicationContext, QuizActivity::class.java)
             intent.putExtra("topic", topics[position])

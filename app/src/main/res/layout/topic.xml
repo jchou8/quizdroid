@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.constraint.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp" android:layout_marginRight="24dp">
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/btn_topic"/>
-</FrameLayout>
+        android:layout_marginEnd="24dp" android:layout_marginRight="24dp" android:id="@+id/frameLayout"
+        android:layout_marginBottom="12dp" android:layout_marginTop="12dp"
+        android:background="?android:attr/selectableItemBackground">
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@mipmap/ic_launcher" android:id="@+id/img_icon"
+            android:contentDescription="Topic icon"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="@string/placeholder_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/txt_topicname"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/img_icon" app:layout_constraintTop_toTopOf="parent"
+            android:textSize="24sp" android:textStyle="bold"/>
+    <TextView
+            android:text="@string/placeholder_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_topicshortdesc" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_topicname" app:layout_constraintStart_toEndOf="@+id/img_icon"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
+</android.support.constraint.ConstraintLayout>

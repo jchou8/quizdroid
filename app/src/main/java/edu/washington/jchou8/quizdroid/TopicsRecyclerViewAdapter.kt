@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.topic.view.*
+import kotlinx.android.synthetic.main.topic_overview.view.*
 
-class TopicsRecyclerViewAdapter(private val topicList: List<String>): RecyclerView.Adapter<TopicsRecyclerViewAdapter.TopicViewHolder>() {
+class TopicsRecyclerViewAdapter(private val topicList: List<Topic>, private val topicIcons: List<Int>): RecyclerView.Adapter<TopicsRecyclerViewAdapter.TopicViewHolder>() {
     var onTopicClickedListener: ((position: Int, name: String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewHolderType: Int): TopicViewHolder {
@@ -20,13 +21,15 @@ class TopicsRecyclerViewAdapter(private val topicList: List<String>): RecyclerVi
 
     override fun onBindViewHolder(viewHolder: TopicViewHolder, position: Int) {
         val topic = topicList[position]
-        viewHolder.bindTopic(topic, position)
+        viewHolder.bindTopic(topic.title, topic.shortDesc, position)
     }
 
     inner class TopicViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        fun bindTopic(name: String, position: Int) {
-            itemView.btn_topic.text = name
-            itemView.btn_topic.setOnClickListener{
+        fun bindTopic(name: String, shortDesc: String, position: Int) {
+            itemView.txt_topicname.text = name
+            itemView.txt_topicshortdesc.text = shortDesc
+            itemView.img_icon.setImageResource(topicIcons[position])
+            itemView.setOnClickListener{
                 onTopicClickedListener?.invoke(position, name)
             }
         }
