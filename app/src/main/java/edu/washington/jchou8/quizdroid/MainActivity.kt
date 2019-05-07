@@ -16,10 +16,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val topics = resources.getStringArray(R.array.topics).asList()
+        val topicIDs = resources.getStringArray(R.array.topic_ids).asList()
         val adapter = TopicsRecyclerViewAdapter(topics)
         adapter.onTopicClickedListener = { position, _ ->
-            val intent = Intent(applicationContext, TopicOverview::class.java)
-            intent.putExtra("topicPosition", position.toString())
+            val intent = Intent(applicationContext, QuizActivity::class.java)
+            intent.putExtra("topicPos", position.toString())
+            intent.putExtra("topic", topicIDs[position])
             startActivity(intent)
         }
 
