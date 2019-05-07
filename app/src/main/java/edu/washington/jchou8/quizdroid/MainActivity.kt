@@ -1,6 +1,7 @@
 package edu.washington.jchou8.quizdroid
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -15,13 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val topics = resources.getStringArray(R.array.topics).asList()
-        val topicIDs = resources.getStringArray(R.array.topic_ids).asList()
-        val adapter = TopicsRecyclerViewAdapter(topics)
+        val topics = QuizApp.getTopics()
+        val topicNames = topics.map{t -> t.title}
+        val adapter = TopicsRecyclerViewAdapter(topicNames)
         adapter.onTopicClickedListener = { position, _ ->
             val intent = Intent(applicationContext, QuizActivity::class.java)
-            intent.putExtra("topicPos", position.toString())
-            intent.putExtra("topic", topicIDs[position])
+            intent.putExtra("topic", topics[position])
             startActivity(intent)
         }
 

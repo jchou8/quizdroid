@@ -19,9 +19,7 @@ class QuizActivity : AppCompatActivity(),
     private val OVERVIEW_FRAGMENT = "OverviewFragment"
     private val RESULT_FRAGMENT = "ResultFragment"
 
-    private var topic: String? = null
-    private var questions = listOf<String>()
-    private var options = mutableListOf<List<String>>()
+    private var topic: Topic? = null
     private var curQuestion = 0
     private var curCorrect = 0
 
@@ -29,19 +27,12 @@ class QuizActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
-        topic = intent.getStringExtra("topic")
-        questions = resources.getStringArray(resources.getIdentifier(topic, "array", packageName)).asList()
+        topic = intent.getParcelableExtra("topic")
 
-        for (qid in questions.indices) {
-            val qOpts = resources.getStringArray(resources.getIdentifier("%s_answers%d".format(topic, qid), "array", packageName))
-            options.add(qid, qOpts.toList())
-        }
+        val topicName = topic!!.title
+        val topicDesc = topic!!.longDesc
 
-        val topicPos = intent.getStringExtra("topicPos").toInt()
-        val topicName = resources.getStringArray(resources.getIdentifier("topics", "array", packageName))[topicPos]
-        val topicDesc = resources.getStringArray(resources.getIdentifier("overviews", "array", packageName))[topicPos]
-
-        val overviewFrag = OverviewFragment.newInstance(topicName, topicDesc, questions.size)
+        val overviewFrag = OverviewFragment.newInstance(topicName, topicDesc, topic!!.questions.size)
         supportFragmentManager.beginTransaction().run {
             replace(R.id.quiz_container, overviewFrag, OVERVIEW_FRAGMENT)
             addToBackStack(null)
@@ -49,17 +40,18 @@ class QuizActivity : AppCompatActivity(),
         }
     }
 
-    override fun onSubmit(answer: String?) {
-        if (options[curQuestion][0] === answer) {
+    override fun onSubmit(answer: Int?) {
+        val question = topic!!.questions[curQuestion]
+        if (question.correct === answer) {
             curCorrect++
         }
 
         val resultFrag = ResultFragment.newInstance(
-            options[curQuestion][0],
-            answer!!,
+            question.options[question.correct],
+            question.options[answer!!],
             curCorrect,
             curQuestion + 1,
-            curQuestion + 1 == questions.size)
+            curQuestion + 1 == topic!!.questions.size)
         supportFragmentManager.beginTransaction().run {
             setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             replace(R.id.quiz_container, resultFrag, RESULT_FRAGMENT)
@@ -71,7 +63,7 @@ class QuizActivity : AppCompatActivity(),
     override fun onResultNext() {
         curQuestion++
 
-        val isLast = curQuestion == questions.size
+        val isLast = curQuestion == topic!!.questions.size
         if (isLast) {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
@@ -86,9 +78,8 @@ class QuizActivity : AppCompatActivity(),
 
     private fun nextQuestion() {
         val questionFrag = QuestionFragment.newInstance(
-            questions[curQuestion],
-            curQuestion + 1,
-            options[curQuestion] as ArrayList<String>)
+            topic!!.questions[curQuestion],
+            curQuestion + 1)
 
         supportFragmentManager.beginTransaction().run {
             setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
