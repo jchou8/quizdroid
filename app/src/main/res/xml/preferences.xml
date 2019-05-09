@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="Question Source"
+                        android:key="download_url"
+                        android:summary="None"/>
+    <EditTextPreference android:title="Download Frequency"
+                        android:summary="5"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789"
+                        android:key="download_freq"/>
+</PreferenceScreen>
