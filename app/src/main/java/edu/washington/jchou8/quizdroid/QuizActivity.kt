@@ -41,12 +41,12 @@ class QuizActivity : AppCompatActivity(),
 
     override fun onSubmit(answer: Int?) {
         val question = topic!!.questions[curQuestion]
-        if (question.correct == answer) {
+        if (question.correct - 1 == answer) {
             curCorrect++
         }
 
         val resultFrag = ResultFragment.newInstance(
-            question.options[question.correct],
+            question.options[question.correct - 1],
             question.options[answer!!],
             curCorrect,
             curQuestion + 1,
