@@ -1,65 +1,100 @@
 [
-    { "title":"Science!",
-      "desc":"Because SCIENCE!",
-      "questions":[
-        {
-          "text":"What is fire?",
-          "answer":"1",
-          "answers":[
-            "One of the four classical elements",
-            "A magical reaction given to us by God",
-            "A band that hasn't yet been discovered",
-            "Fire! Fire! Fire! heh-heh"
-          ]
-        }
-      ]
-    },
-    { "title":"Marvel Super Heroes", "desc": "Avengers, Assemble!",
-      "questions":[
-        {
-          "text":"Who is Iron Man?",
-          "answer":"1",
-          "answers":[
-            "Tony Stark",
-            "Obadiah Stane",
-            "A rock hit by Megadeth",
-            "Nobody knows"
-          ]
-        },
-        {
-          "text":"Who founded the X-Men?",
-          "answer":"2",
-          "answers":[
-            "Tony Stark",
-            "Professor X",
-            "The X-Institute",
-            "Erik Lensherr"
-          ]
-        },
-        {
-          "text":"How did Spider-Man get his powers?",
-          "answer":"1",
-          "answers":[
-            "He was bitten by a radioactive spider",
-            "He ate a radioactive spider",
-            "He is a radioactive spider",
-            "He looked at a radioactive spider"
-          ]
-        }
-      ]
-    },
-    { "title":"Mathematics", "desc":"Did you pass the third grade?",
-      "questions":[
-         {
-           "text":"What is 2+2?",
-           "answer":"1",
-           "answers":[
-             "4",
-             "22",
-             "An irrational number",
-             "Nobody knows"
-           ]
-         }
-      ]
-   }
+  {
+    "title": "Math",
+    "desc": "Questions about math.",
+    "questions": [
+      {
+        "text": "What is 3+3?",
+        "answer": "4",
+        "answers": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "text": "What is 5-2?",
+        "answer": "2",
+        "answers": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      {
+        "text": "What is 2^10?",
+        "answer": "1",
+        "answers": [
+          "1024",
+          "2048",
+          "4096",
+          "8192"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Physics",
+    "desc": "Physical questions.",
+    "questions": [
+      {
+        "text": "What is the speed of light?",
+        "answer": "2",
+        "answers": [
+          "3x10^7 m/s",
+          "3x10^8 m/s",
+          "3x10^9 m/s",
+          "3x10^8 m/hr"
+        ]
+      },
+      {
+        "text": "What is acceleration of gravity on Earth?",
+        "answer": "4",
+        "answers": [
+          "8.9 m/s",
+          "8.9 m/s²",
+          "9.8 m/s",
+          "9.8 m/s²"
+        ]
+      },
+      {
+        "text": "What is the formulat for kinetic energy?",
+        "answer": "3",
+        "answers": [
+          "½mv",
+          "¼mv",
+          "½mv²",
+          "¼mv²"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Marvel Super Heroes",
+    "desc": "Marvelous questions.",
+    "questions": [
+      {
+        "text": "Which of the following is not a Marvel superhero?",
+        "answer": "1",
+        "answers": [
+          "Batman",
+          "Iron Man",
+          "Spiderman",
+          "Wolverine"
+        ]
+      },
+      {
+        "text": "How many superheroes are in the Fantastic Four?",
+        "answer": "2",
+        "answers": [
+          "1",
+          "4",
+          "5",
+          "80"
+        ]
+      }
+    ]
+  }
 ]
