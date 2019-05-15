@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.takisoft.fix.support.v7.preference.EditTextPreference
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat
 import android.content.SharedPreferences
+import android.util.Log
 
 
 const val PREFS_KEY = "Quizdroid"
@@ -46,9 +47,11 @@ class PreferencesActivity : AppCompatActivity() {
 
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
             val pref = this.findPreference(key)
-            if (this.findPreference(key) is EditTextPreference) {
-                updateSummary(pref as EditTextPreference)
+            if (pref is EditTextPreference) {
+                updateSummary(pref)
             }
+
+            QuizApp.startDownloadService(context!!)
         }
         private fun updateSummary(preference: EditTextPreference) {
             preference.summary = preference.text

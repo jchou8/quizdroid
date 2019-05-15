@@ -19,6 +19,7 @@ const val QUESTION_TEXT = "text"
 const val QUESTION_ANSWER = "answer"
 const val QUESTION_OPTIONS = "answers"
 const val DEFAULT_ICON = "ic_launcher"
+const val TAG = "TopicRepository"
 
 interface TopicRepository {
     val topics: List<Topic>
@@ -26,10 +27,6 @@ interface TopicRepository {
 
 class LocalFileTopicRepository(stream: InputStream) : TopicRepository {
     override var topics = listOf<Topic>()
-
-    companion object {
-        const val TAG = "LocalFileRepository"
-    }
 
     init {
         topics = parseJson(stream)

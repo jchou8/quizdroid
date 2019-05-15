@@ -13,6 +13,13 @@ import java.io.File
 import java.io.IOException
 import TopicRepository
 import LocalFileTopicRepository
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Intent
+import android.net.ConnectivityManager
+import android.os.SystemClock
+import android.renderscript.ScriptGroup
+import java.io.InputStream
 
 const val TAG = "QuizApp"
 const val FILE_PATH = "questions.json"
@@ -29,17 +36,40 @@ class QuizApp: Application() {
     companion object {
         private var topicRepository: TopicRepository? = null
         fun getTopics() = topicRepository!!.topics
+        fun updateTopics(ctx: Context) {
+            try {
+                val inputStream = ctx.openFileInput(FILE_PATH)
+                topicRepository = LocalFileTopicRepository(inputStream)
+            } catch (e: IOException){
+                Log.e(TAG, "Failed to load topic repository: %s".format(e.message))
+            }
+        }
+
+        private var pendingIntent: PendingIntent? = null
+
+        fun startDownloadService(ctx: Context) {
+            val prefs = ctx.getSharedPreferences(ctx.packageName + "_preferences", Context.MODE_PRIVATE)
+            val alarmManager = ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(ctx, DownloadService::class.java)
+            val url = prefs.getString("download_url", "http://tednewardsandbox.site44.com/questions.json")
+            val freq = prefs.getString("download_freq", "1").toLong() * 60 * 1000
+
+            Log.i(TAG, "Starting download service from %s every %d ms".format(url, freq))
+
+            intent.putExtra("url", url)
+            pendingIntent = PendingIntent.getService(ctx, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            alarmManager.setRepeating(
+                AlarmManager.ELAPSED_REALTIME,
+                SystemClock.elapsedRealtime(),
+                freq,
+                pendingIntent)
+
+        }
     }
 
     override fun onCreate() {
         super.onCreate()
         Log.i("QuizApp", "QuizApp is loaded!")
-
-        try {
-            val inputStream = assets.open(FILE_PATH)
-            topicRepository = LocalFileTopicRepository(inputStream)
-        } catch (e: IOException){
-            Log.e(TAG, "Failed to load topic repository: %s".format(e.message))
-        }
+        updateTopics(applicationContext)
     }
 }
