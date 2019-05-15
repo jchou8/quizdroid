@@ -1,6 +1,5 @@
 package edu.washington.jchou8.quizdroid
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
@@ -13,10 +12,10 @@ import java.io.File
 import java.io.IOException
 import TopicRepository
 import LocalFileTopicRepository
-import android.app.AlarmManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Intent
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.SystemClock
 import android.renderscript.ScriptGroup
 import java.io.InputStream
@@ -70,6 +69,24 @@ class QuizApp: Application() {
     override fun onCreate() {
         super.onCreate()
         Log.i("QuizApp", "QuizApp is loaded!")
+        createNotificationChannel()
         updateTopics(applicationContext)
+    }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Quizdroid"
+            val descriptionText = "A quiz app."
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(name, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }
